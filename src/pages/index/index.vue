@@ -4,6 +4,10 @@
     <view>
       <text class="title">{{ title }}</text>
     </view>
+    <view class="father">
+      父
+      <view class="son">儿</view>
+    </view>
   </view>
 </template>
 
@@ -19,7 +23,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 .content {
   display: flex;
   flex-direction: column;
@@ -41,5 +45,16 @@ export default {
 .title {
   font-size: 36rpx;
   color: #8f8f94;
+}
+
+.father {
+  width: 750rpx;
+  height: 200rpx;
+  background-color: skyblue;
+  .son {
+    width: 375rpx;
+    height: 100rpx;
+    background-color: orange;
+  }
 }
 </style>
