@@ -7,8 +7,26 @@
   },
   "pages": [
     {
-      "path": "pages/index/index",
+      "path": "pages/home/home",
       "style": {}
+    },
+    {
+      "path": "pages/category/category",
+      "style": {
+        "navigationBarTitleText": "分类"
+      }
+    },
+    {
+      "path": "pages/cart/cart",
+      "style": {
+        "navigationBarTitleText": "购物车"
+      }
+    },
+    {
+      "path": "pages/my/my",
+      "style": {
+        "navigationBarTitleText": "我的"
+      }
     }
   ],
   "globalStyle": {
