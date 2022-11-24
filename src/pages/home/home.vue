@@ -19,6 +19,17 @@
         </navigator>
       </swiper-item>
     </swiper>
+    <!-- 分类导航区域 -->
+    <view class="nav-list">
+      <view
+        @click="jump(item)"
+        class="nav-item"
+        v-for="(item, index) in navList"
+        :key="index"
+      >
+        <image :src="item.image_src" class="nav-img"></image>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -27,12 +38,29 @@ export default {
   data() {
     return {
       swiperList: [],
+      navList: [],
     };
   },
   methods: {
+    jump(item) {
+      if (item.name) {
+        uni.switchTab({
+          url: "/pages/category/category",
+        });
+      }
+    },
+    async getNavList() {
+      const { meta, message } = await this.$http.get("/home/catitems");
+
+      // 请求失败处理
+      if (meta.status !== 200) {
+        return this.$msg();
+      }
+
+      this.navList = message;
+    },
     async getSwiperList() {
       const { meta, message } = await this.$http.get("/home/swiperdata");
-      console.log({ meta, message });
       // 请求失败处理
       if (meta.status !== 200) {
         this.$msg();
@@ -44,11 +72,22 @@ export default {
   },
   created() {
     this.getSwiperList();
+    this.getNavList();
   },
 };
 </script>
 
 <style lang="scss">
+.nav-list {
+  display: flex;
+  justify-content: space-around;
+  margin: 30rpx 0;
+
+  .nav-img {
+    width: 128rpx;
+    height: 140rpx;
+  }
+}
 .top-swiper {
   height: 330rpx;
 
