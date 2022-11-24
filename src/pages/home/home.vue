@@ -1,4 +1,23 @@
-<template></template>
+<template>
+  <view>
+    <!-- 轮播图区域 -->
+    <swiper
+      class="top-swiper"
+      :indicator-dots="true"
+      :autoplay="true"
+      :interval="3000"
+      :duration="1000"
+      :circular="true"
+    >
+      <!-- 循环渲染轮播图的 item 项 -->
+      <swiper-item v-for="(item, index) in swiperList" :key="index">
+        <view class="swiper-content">
+          <image :src="item.image_src"></image>
+        </view>
+      </swiper-item>
+    </swiper>
+  </view>
+</template>
 
 <script>
 export default {
@@ -29,4 +48,14 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.top-swiper {
+  height: 330rpx;
+
+  .swiper-content,
+  image {
+    width: 100%;
+    height: 100%;
+  }
+}
+</style>
