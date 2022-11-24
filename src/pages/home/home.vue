@@ -84,7 +84,9 @@ export default {
   },
   methods: {
     goSearch() {
-      console.log("search");
+      uni.navigateTo({
+        url: "/pages_sub1/search/search",
+      });
     },
     goToProductList(product) {
       // 从后端返回字段中提取出需要的跳转参数

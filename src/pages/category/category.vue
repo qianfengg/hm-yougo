@@ -1,7 +1,7 @@
 <template>
   <view>
     <!-- 预留出的搜索区域 -->
-    <my-search bgcolor="skyblue" radius="10rpx"></my-search>
+    <my-search @click="goSearch" bgcolor="skyblue" radius="10rpx"></my-search>
     <view class="scroll-view-container">
       <!-- 左侧的滚动区域 -->
       <scroll-view
@@ -77,6 +77,11 @@ export default {
     this.getCategoryList();
   },
   methods: {
+    goSearch() {
+      uni.navigateTo({
+        url: "/pages_sub1/search/search",
+      });
+    },
     gotoProductList(obj) {
       uni.navigateTo({
         url: `/pages_sub1/product-list/product-list?cid=${obj.cat_id}`,

@@ -44,6 +44,12 @@
           "style": {
             "navigationBarTitleText": "商品列表"
           }
+        },
+        {
+          "path": "search/search",
+          "style": {
+            "navigationBarTitleText": "搜索中心"
+          }
         }
       ]
     }
