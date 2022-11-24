@@ -25,15 +25,14 @@
         scroll-y
         :style="{ height: wh + 'px' }"
       >
-        <view class="left-scroll-view-item">zzz</view>
-        <view class="left-scroll-view-item">zzz</view>
-        <view class="left-scroll-view-item">zzz</view>
-        <view v-for="item in 30" :key="item" class="left-scroll-view-item"
-          >zzz</view
+        <!-- 动态渲染二级分类的列表数据 -->
+        <view
+          class="cate-lv2"
+          v-for="(item2, index2) in categoryList[selectedCategory].children"
+          :key="index2"
         >
-        <view class="left-scroll-view-item"
-          >多复制一些节点，演示纵向滚动效果</view
-        >
+          <view class="cate-lv2-title">/ {{ item2.cat_name }} /</view>
+        </view>
       </scroll-view>
     </view>
   </view>
@@ -110,5 +109,11 @@ export default {
       }
     }
   }
+}
+.cate-lv2-title {
+  font-size: 24rpx;
+  font-weight: bold;
+  text-align: center;
+  padding: 30rpx 0;
 }
 </style>
