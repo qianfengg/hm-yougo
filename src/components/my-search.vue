@@ -1,5 +1,9 @@
 <template>
-  <view class="my-search-container" :style="{ background: bgcolor }">
+  <view
+    @click="handleClick"
+    class="my-search-container"
+    :style="{ background: bgcolor }"
+  >
     <!-- 这是一个没有输入功能的假输入框，点击后直接跳转到单独的搜索页面-->
     <view class="my-search-box" :style="{ borderRadius: radius }">
       <uni-icons type="search" size="17"></uni-icons>
@@ -18,6 +22,11 @@ export default {
     radius: {
       type: String,
       default: "30rpx",
+    },
+  },
+  methods: {
+    handleClick() {
+      this.$emit("click");
     },
   },
 };

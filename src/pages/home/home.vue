@@ -1,6 +1,6 @@
 <template>
   <view>
-    <my-search></my-search>
+    <my-search @click="goSearch"></my-search>
     <!-- 轮播图区域 -->
     <swiper
       class="top-swiper"
@@ -35,7 +35,7 @@
     <view class="floor-list">
       <!-- 楼层 item 项 -->
       <view class="floor-item" v-for="(item, index) in floorList" :key="index">
-        <!-- 楼层标题 -->
+        楼层标题
         <image :src="item.floor_title.image_src" class="floor-title"></image>
 
         <!-- 楼层图片区域 -->
@@ -83,6 +83,9 @@ export default {
     };
   },
   methods: {
+    goSearch() {
+      console.log("search");
+    },
     goToProductList(product) {
       // 从后端返回字段中提取出需要的跳转参数
       const str = product.navigator_url.split("?")[1];
