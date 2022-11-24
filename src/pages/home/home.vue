@@ -30,6 +30,39 @@
         <image :src="item.image_src" class="nav-img"></image>
       </view>
     </view>
+    <!-- 楼层区域 -->
+    <view class="floor-list">
+      <!-- 楼层 item 项 -->
+      <view class="floor-item" v-for="(item, index) in floorList" :key="index">
+        <!-- 楼层标题 -->
+        <image :src="item.floor_title.image_src" class="floor-title"></image>
+
+        <!-- 楼层图片区域 -->
+        <view class="floor-img-box">
+          <!-- 左侧 1 个大图 -->
+          <view class="left-img-box">
+            <image
+              :src="item.product_list[0].image_src"
+              :style="{ width: item.product_list[0].image_width + 'rpx' }"
+              mode="widthFix"
+            ></image>
+          </view>
+
+          <!-- 右侧 4 个小图 -->
+          <view class="right-img-box">
+            <block v-for="(product, idx) in item.product_list" :key="idx">
+              <view class="right-img-item" v-if="idx !== 0">
+                <image
+                  :src="product.image_src"
+                  :style="{ width: product.image_width + 'rpx' }"
+                  mode="widthFix"
+                ></image>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -39,6 +72,7 @@ export default {
     return {
       swiperList: [],
       navList: [],
+      floorList: [],
     };
   },
   methods: {
@@ -69,10 +103,21 @@ export default {
       this.swiperList = message;
       // this.$msg("获取轮播图数据成功");
     },
+    async getFloorList() {
+      const { meta, message } = await this.$http.get("/home/floordata");
+
+      // 请求失败处理
+      if (meta.status !== 200) {
+        return this.$msg();
+      }
+
+      this.floorList = message;
+    },
   },
   created() {
     this.getSwiperList();
     this.getNavList();
+    this.getFloorList();
   },
 };
 </script>
@@ -96,5 +141,20 @@ export default {
     width: 100%;
     height: 100%;
   }
+}
+.right-img-box {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.floor-img-box {
+  display: flex;
+  padding-left: 10rpx;
+}
+.floor-title {
+  display: flex;
+  width: 100%;
+  height: 60rpx;
 }
 </style>
