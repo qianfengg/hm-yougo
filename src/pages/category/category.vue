@@ -39,6 +39,7 @@
               class="cate-lv3-item"
               v-for="(item3, index3) in item2.children"
               :key="index3"
+              @click="gotoProductList(item3)"
             >
               <image :src="item3.cat_icon"></image>
               <text>{{ item3.cat_name }}</text>
@@ -72,6 +73,11 @@ export default {
     this.getCategoryList();
   },
   methods: {
+    gotoProductList(obj) {
+      uni.navigateTo({
+        url: `/pages_sub1/product-list/product-list?cid=${obj.cat_id}`,
+      });
+    },
     changeSelected(index) {
       this.selectedCategory = index;
       this.scrollTop = this.scrollTop === 0 ? 1 : 0;
