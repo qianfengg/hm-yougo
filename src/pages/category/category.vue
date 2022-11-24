@@ -24,6 +24,7 @@
         class="right-scroll-view"
         scroll-y
         :style="{ height: wh + 'px' }"
+        :scroll-top="scrollTop"
       >
         <!-- 动态渲染二级分类的列表数据 -->
         <view
@@ -32,6 +33,17 @@
           :key="index2"
         >
           <view class="cate-lv2-title">/ {{ item2.cat_name }} /</view>
+          <!-- 动态渲染三级分类的列表数据 -->
+          <view class="cate-lv3-list">
+            <view
+              class="cate-lv3-item"
+              v-for="(item3, index3) in item2.children"
+              :key="index3"
+            >
+              <image :src="item3.cat_icon"></image>
+              <text>{{ item3.cat_name }}</text>
+            </view>
+          </view>
         </view>
       </scroll-view>
     </view>
@@ -45,6 +57,7 @@ export default {
       wh: 0,
       categoryList: [],
       selectedCategory: 0,
+      scrollTop: 0,
     };
   },
 
@@ -61,6 +74,7 @@ export default {
   methods: {
     changeSelected(index) {
       this.selectedCategory = index;
+      this.scrollTop = this.scrollTop === 0 ? 1 : 0;
     },
     async getCategoryList() {
       const { meta, message } = await this.$http.get("/categories");
@@ -115,5 +129,26 @@ export default {
   font-weight: bold;
   text-align: center;
   padding: 30rpx 0;
+}
+.cate-lv3-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  .cate-lv3-item {
+    width: 33.33%;
+    margin-bottom: 20rpx;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    image {
+      width: 120rpx;
+      height: 120rpx;
+    }
+
+    text {
+      font-size: 24rpx;
+    }
+  }
 }
 </style>
