@@ -29,6 +29,25 @@
       }
     }
   ],
+  "subPackages": [
+    {
+      "root": "pages_sub1",
+      "pages": [
+        {
+          "path": "product-detail/product-detail",
+          "style": {
+            "navigationBarTitleText": "商品详情"
+          }
+        },
+        {
+          "path": "product-list/product-list",
+          "style": {
+            "navigationBarTitleText": "商品列表"
+          }
+        }
+      ]
+    }
+  ],
   "globalStyle": {
     "navigationBarTextStyle": "white",
     "navigationBarTitleText": "黑马优购",
@@ -37,6 +56,7 @@
   },
   "tabBar": {
     "color": "#000000",
+    "backgroundColor": "#fff",
     "selectedColor": "#C00000",
     "list": [
       {
