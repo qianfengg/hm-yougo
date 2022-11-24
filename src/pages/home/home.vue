@@ -1,5 +1,6 @@
 <template>
   <view>
+    <my-search></my-search>
     <!-- 轮播图区域 -->
     <swiper
       class="top-swiper"
@@ -69,7 +70,11 @@
 </template>
 
 <script>
+import MySearch from "@/components/my-search";
 export default {
+  components: {
+    MySearch,
+  },
   data() {
     return {
       swiperList: [],

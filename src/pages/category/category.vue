@@ -1,7 +1,7 @@
 <template>
   <view>
     <!-- 预留出的搜索区域 -->
-
+    <my-search></my-search>
     <view class="scroll-view-container">
       <!-- 左侧的滚动区域 -->
       <scroll-view
@@ -52,7 +52,11 @@
 </template>
 
 <script>
+import MySearch from "@/components/my-search";
 export default {
+  components: {
+    MySearch,
+  },
   data() {
     return {
       wh: 0,
