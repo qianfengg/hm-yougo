@@ -35,14 +35,11 @@ export default {
       console.log({ meta, message });
       // 请求失败处理
       if (meta.status !== 200) {
-        uni.showToast({
-          title: "请求数据失败",
-          duration: 1500,
-          icon: "none",
-        });
+        this.$msg();
         return;
       }
       this.swiperList = message;
+      // this.$msg("获取轮播图数据成功");
     },
   },
   created() {
