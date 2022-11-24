@@ -45,6 +45,7 @@
               :src="item.product_list[0].image_src"
               :style="{ width: item.product_list[0].image_width + 'rpx' }"
               mode="widthFix"
+              @click="goToProductList(item.product_list[0])"
             ></image>
           </view>
 
@@ -56,6 +57,7 @@
                   :src="product.image_src"
                   :style="{ width: product.image_width + 'rpx' }"
                   mode="widthFix"
+                  @click="goToProductList(product)"
                 ></image>
               </view>
             </block>
@@ -76,6 +78,14 @@ export default {
     };
   },
   methods: {
+    goToProductList(product) {
+      // 从后端返回字段中提取出需要的跳转参数
+      const str = product.navigator_url.split("?")[1];
+
+      uni.navigateTo({
+        url: "/pages_sub1/product-list/product-list?" + str,
+      });
+    },
     jump(item) {
       if (item.name) {
         uni.switchTab({
