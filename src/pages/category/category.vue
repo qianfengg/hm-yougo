@@ -9,15 +9,13 @@
         scroll-y
         :style="{ height: wh + 'px' }"
       >
-        <view class="left-scroll-view-item active">xxx</view>
-        <view v-for="item in 30" :key="item" class="left-scroll-view-item"
-          >xxx</view
-        >
-        <view class="left-scroll-view-item">xxx</view>
-        <view class="left-scroll-view-item">xxx</view>
-        <view class="left-scroll-view-item">xxx</view>
-        <view class="left-scroll-view-item"
-          >多复制一些节点，演示纵向滚动效果...</view
+        <view
+          v-for="(item, index) in categoryList"
+          :key="index"
+          class="left-scroll-view-item"
+          :class="{ active: selectedCategory === index }"
+          @click="changeSelected(index)"
+          >{{ item.cat_name }}</view
         >
       </scroll-view>
 
@@ -46,6 +44,8 @@ export default {
   data() {
     return {
       wh: 0,
+      categoryList: [],
+      selectedCategory: 0,
     };
   },
 
@@ -57,6 +57,22 @@ export default {
     // 2. 从系统信息中获取窗口可用高度并赋值给 wh
     // 窗口的可用高度 = 屏幕高度 - navigationBar高度 - tabBar高度
     this.wh = sysInfo.windowHeight;
+    this.getCategoryList();
+  },
+  methods: {
+    changeSelected(index) {
+      this.selectedCategory = index;
+    },
+    async getCategoryList() {
+      const { meta, message } = await this.$http.get("/categories");
+
+      // 请求失败处理
+      if (meta.status !== 200) {
+        return this.$msg();
+      }
+
+      this.categoryList = message;
+    },
   },
 };
 </script>
