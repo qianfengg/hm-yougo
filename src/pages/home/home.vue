@@ -11,9 +11,12 @@
     >
       <!-- 循环渲染轮播图的 item 项 -->
       <swiper-item v-for="(item, index) in swiperList" :key="index">
-        <view class="swiper-content">
+        <navigator
+          :url="`/pages_sub1/product-detail/product-detail?pid=${item.goods_id}`"
+          class="swiper-content"
+        >
           <image :src="item.image_src"></image>
-        </view>
+        </navigator>
       </swiper-item>
     </swiper>
   </view>
