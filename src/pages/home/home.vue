@@ -1,18 +1,30 @@
-<template>
-  <view>
-    <h1>home</h1>
-    <button @click="requestFn">发送请求</button>
-  </view>
-</template>
+<template></template>
 
 <script>
 export default {
+  data() {
+    return {
+      swiperList: [],
+    };
+  },
   methods: {
-    async requestFn() {
-      console.log(this.$http);
-      const res = await this.$http.get("/home/swiperdata");
-      console.log(res);
+    async getSwiperList() {
+      const { meta, message } = await this.$http.get("/home/swiperdata");
+      console.log({ meta, message });
+      // 请求失败处理
+      if (meta.status !== 200) {
+        uni.showToast({
+          title: "请求数据失败",
+          duration: 1500,
+          icon: "none",
+        });
+        return;
+      }
+      this.swiperList = message;
     },
+  },
+  created() {
+    this.getSwiperList();
   },
 };
 </script>
