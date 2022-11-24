@@ -1,16 +1,31 @@
 <template>
-  <view class="my-search-container">
+  <view class="my-search-container" :style="{ background: bgcolor }">
     <!-- 这是一个没有输入功能的假输入框，点击后直接跳转到单独的搜索页面-->
-    <view class="my-search-box">
+    <view class="my-search-box" :style="{ borderRadius: radius }">
       <uni-icons type="search" size="17"></uni-icons>
       <text class="placeholder">搜索</text>
     </view>
   </view>
 </template>
 
+<script>
+export default {
+  props: {
+    bgcolor: {
+      type: String,
+      default: "#c00000",
+    },
+    radius: {
+      type: String,
+      default: "30rpx",
+    },
+  },
+};
+</script>
+
 <style scoped lang="scss">
 .my-search-container {
-  background-color: #c00000;
+  //   background-color: #c00000;
   height: 100rpx;
   padding: 0 20rpx;
   display: flex;
@@ -20,7 +35,7 @@
 .my-search-box {
   height: 72rpx;
   background-color: #ffffff;
-  border-radius: 30rpx;
+  //   border-radius: 30rpx;
   width: 100%;
   display: flex;
   align-items: center;

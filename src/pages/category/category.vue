@@ -1,7 +1,7 @@
 <template>
   <view>
     <!-- 预留出的搜索区域 -->
-    <my-search></my-search>
+    <my-search bgcolor="skyblue" radius="10rpx"></my-search>
     <view class="scroll-view-container">
       <!-- 左侧的滚动区域 -->
       <scroll-view
@@ -73,7 +73,7 @@ export default {
 
     // 2. 从系统信息中获取窗口可用高度并赋值给 wh
     // 窗口的可用高度 = 屏幕高度 - navigationBar高度 - tabBar高度
-    this.wh = sysInfo.windowHeight;
+    this.wh = sysInfo.windowHeight - 50;
     this.getCategoryList();
   },
   methods: {
