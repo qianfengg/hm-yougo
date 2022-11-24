@@ -1,6 +1,8 @@
 <template>
   <view>
-    <my-search @click="goSearch"></my-search>
+    <view class="search-box">
+      <my-search @click="goSearch"></my-search>
+    </view>
     <!-- 轮播图区域 -->
     <swiper
       class="top-swiper"
@@ -176,5 +178,10 @@ export default {
   display: flex;
   width: 100%;
   height: 60rpx;
+}
+.search-box {
+  position: sticky;
+  top: 0;
+  z-index: 999;
 }
 </style>
