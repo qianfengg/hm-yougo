@@ -13,9 +13,19 @@
 
 <script>
 export default {
+  data() {
+    return {
+      keyword: "",
+      timer: null,
+    };
+  },
   methods: {
-    inputHandler(e) {
-      console.log(e);
+    inputHandler(value) {
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.keyword = value;
+        console.log("开始搜索", this.keyword);
+      }, 500);
     },
   },
 };
