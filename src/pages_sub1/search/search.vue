@@ -17,6 +17,7 @@ export default {
     return {
       keyword: "",
       timer: null,
+      suggestions: [],
     };
   },
   methods: {
@@ -24,8 +25,19 @@ export default {
       clearTimeout(this.timer);
       this.timer = setTimeout(() => {
         this.keyword = value;
-        console.log("开始搜索", this.keyword);
+        this.getSuggestions();
       }, 500);
+    },
+    async getSuggestions() {
+      if (!this.keyword) return;
+      const { meta, message } = await this.$http.get("/goods/qsearch", {
+        query: this.keyword,
+      });
+      if (meta.status !== 200) {
+        return this.$msg();
+      }
+      this.suggestions = message;
+      console.log(this.suggestions);
     },
   },
 };
